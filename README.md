@@ -7,12 +7,15 @@ Software binaries are installed separately on each Mac. This repo restores **con
 ```sh
 # 1. Install the programs themselves (Homebrew is assumed)
 brew install chezmoi
-brew install --cask herdr                 # Herdr desktop app
-curl -fsSL https://pi.dev/install.sh | sh # pi
-curl -fsSL https://opencode.ai/install | sh # opencode  (or your usual installer)
+brew install --cask herdr-app              # Herdr desktop app (Herdr.app)
+brew install herdr                         # Herdr TUI (optional)
+curl -fsSL https://pi.dev/install.sh | sh  # pi
+curl -fsSL https://opencode.ai/install | bash  # opencode
 
 # 2. Pull and apply all config; the after-script installs plugins/extensions
+#    HTTPS needs GitHub credentials; SSH needs a key with repo access.
 chezmoi init --apply git@github.com:lcinshu/mac-workspace.git
+# chezmoi init --apply https://github.com/lcinshu/mac-workspace.git
 
 # 3. Log in per machine (credentials are intentionally not synced)
 pi        -> /login     (opencode-go)
