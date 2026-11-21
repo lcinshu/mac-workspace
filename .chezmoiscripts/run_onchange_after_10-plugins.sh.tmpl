@@ -1,0 +1,47 @@
+#!/bin/sh
+# Replay plugin / extension declarations. Managed by chezmoi; do not edit directly.
+set -u
+status=0
+step() { printf '\n== %s\n' "$1"; }
+bad() { printf '  FAILED: %s\n' "$*" >&2; status=1; }
+
+step "pi extensions (17 packages declared in ~/.pi/agent/settings.json)"
+if command -v pi >/dev/null 2>&1; then
+  pi update --extensions || bad "pi update --extensions"
+else
+  bad "pi not found on PATH"
+fi
+
+step "herdr plugins (pinned refs from herdr-plugins.txt)"
+if command -v herdr >/dev/null 2>&1; then
+  while IFS='|' read -r repo ref pid state; do
+    [ -z "$repo" ] && continue
+    if [ -n "$ref" ]; then
+      herdr plugin install "$repo" --ref "$ref" -y || bad "install $repo@$ref"
+    else
+      herdr plugin install "$repo" -y || bad "install $repo"
+    fi
+    if [ "$state" = "disabled" ]; then
+      herdr plugin disable "$pid" 2>/dev/null || true
+    else
+      herdr plugin enable "$pid" 2>/dev/null || true
+    fi
+  done <<'PLUGINS'
+{{ include "dot_config/herdr/herdr-plugins.txt" -}}
+PLUGINS
+  herdr server reload-config || bad "herdr server reload-config"
+else
+  bad "herdr not found on PATH"
+fi
+
+step "opencode plugin dependencies"
+if command -v npm >/dev/null 2>&1 && [ -f "$HOME/.config/opencode/package.json" ]; then
+  (cd "$HOME/.config/opencode" && npm install --no-audit --no-fund) || bad "npm install in ~/.config/opencode"
+else
+  bad "npm or opencode config missing"
+fi
+
+if [ "$status" -ne 0 ]; then
+  printf '\nSome steps failed. Fix the issue and re-run: chezmoi apply\n' >&2
+fi
+exit "$status"

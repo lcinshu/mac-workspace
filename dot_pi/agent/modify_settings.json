@@ -1,0 +1,19 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $cur := dict -}}
+{{- if .chezmoi.stdin -}}{{- $cur = .chezmoi.stdin | fromJson -}}{{- end -}}
+{{- /* Keep built-in MCP disabled; preserve machine-local extensions already present. */ -}}
+{{- $ext := list "-builtin:mcp" -}}
+{{- if hasKey $cur "extensions" -}}
+{{- range $e := $cur.extensions -}}
+{{- if ne $e "-builtin:mcp" -}}{{- $ext = append $ext $e -}}{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- $packages := fromJson `["npm:pi-tokyo-night","npm:pi-lens","npm:pi-web-access","npm:pi-mcp-adapter","npm:@narumitw/pi-plan-mode","npm:@narumitw/pi-usage","npm:@juicesharp/rpiv-todo","npm:@juicesharp/rpiv-ask-user-question","npm:@gotgenes/pi-subagents@25.0.5","npm:@gotgenes/pi-permission-system@42.2.0","npm:@nicknisi/pi-compact-tools","npm:context-mode","npm:pi-better-background-tasks","npm:pi-btw","npm:pi-memory","npm:pi-simplify","npm:pi-zentui"]` -}}
+{{- $_ := setValueAtPath "defaultProvider" "opencode-go" $cur -}}
+{{- $_ := setValueAtPath "defaultModel" "hy4" $cur -}}
+{{- $_ := setValueAtPath "enabledModels" (fromJson `["opencode-go/*"]`) $cur -}}
+{{- $_ := setValueAtPath "theme" "tokyo-night" $cur -}}
+{{- $_ := setValueAtPath "hideThinkingBlock" true $cur -}}
+{{- $_ := setValueAtPath "extensions" $ext $cur -}}
+{{- $_ := setValueAtPath "packages" $packages $cur -}}
+{{- toPrettyJson $cur }}

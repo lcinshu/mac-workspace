@@ -1,0 +1,53 @@
+# Runtime state / secrets / machine-specific files — never manage these.
+# Patterns match target paths relative to $HOME (chezmoi convention).
+
+# Repo-only documentation
+README.md
+
+# pi: credentials, sessions, downloaded packages, caches
+.pi/agent/auth.json
+.pi/agent/sessions/**
+.pi/agent/install/**
+.pi/agent/npm/**
+.pi/agent/bin/**
+.pi/agent/tmp/**
+.pi/agent/pi-web-access/**
+.pi/agent/models-store.json
+.pi/agent/*.bak
+.pi/agent/mcp-*.json
+
+# opencode: local service password, installed modules, backups
+.config/opencode/service.json
+.config/opencode/node_modules/**
+.config/opencode/*.bak
+.config/opencode/open-island-opencode-plugin-install.json
+
+# herdr TUI: sessions, logs, plugin checkouts/build artifacts
+# .config/herdr/herdr-plugins.txt is source-only inventory read by the after-script
+.config/herdr/herdr-plugins.txt
+.config/herdr/session.json
+.config/herdr/*.log
+.config/herdr/release-notes.json
+.config/herdr/.plugins.lock
+.config/herdr/plugins/github/**
+.config/herdr/plugins/config/**/generated.yml
+.config/herdr/plugins/config/**/layout-*.yml
+.config/herdr/plugins/config/**/update-check-state.json
+.config/herdr/plugins/config/cloudmanic.herdr-plus/**
+
+# herdr App: files written by the app itself
+.config/herdr-app/view.json
+.config/herdr-app/shared.json
+.config/herdr-app/data/**
+.config/herdr-app/seen.json
+.config/herdr-app/installed.json
+.config/herdr-app/window.json
+.config/herdr-app/windows.json
+.config/herdr-app/frame/**
+.config/herdr-app/icons/**
+.config/herdr-app/telemetry/**
+.config/herdr-app/update-notes*
+.config/herdr-app/layouts/.state/**
+.config/herdr-app/AGENTS.md
+.config/herdr-app/*.d.ts
+.config/herdr-app/*.sock

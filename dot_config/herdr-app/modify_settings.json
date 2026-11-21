@@ -1,0 +1,10 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $cur := dict -}}
+{{- if .chezmoi.stdin -}}{{- $cur = .chezmoi.stdin | fromJson -}}{{- end -}}
+{{- $_ := setValueAtPath "zoom" 1 $cur -}}
+{{- $_ := setValueAtPath "font_size" 14 $cur -}}
+{{- $_ := setValueAtPath "font_ligatures" false $cur -}}
+{{- $_ := setValueAtPath "minimum_contrast" 1 $cur -}}
+{{- $_ := setValueAtPath "appearance" "dark" $cur -}}
+{{- $_ := setValueAtPath "sounds.enabled" true $cur -}}
+{{- toPrettyJson $cur }}

@@ -1,0 +1,14 @@
+sanirudh17/herdr-agent-handoff|v0.1.1|agent-handoff|enabled
+cloudmanic/herdr-plus|a9aca9da3ca6d7406f3d878a1df1c1b9775e2723|cloudmanic.herdr-plus|enabled
+smarzban/herdr-file-viewer|647f03236d9aa20de0b07c9de0a951e13a1e59bf|herdr-file-viewer|enabled
+yankewei/herdr-focus-notify|448d3124035ad1240a97118b60e1fe00dda92d72|herdr-focus-notify|disabled
+Crokily/herdr-lazygit|a13e12c99e5e469edd73165cabba413c2a2fd698|herdr-lazygit|enabled
+thanhdat77/herdr-navigator|b94ef1ea2e042cd82dcd4d60881fcbc5beee6e48|herdr-navigator|enabled
+wenhanweime/herdr-plugin-renamer|35fadca7713810c0c9488293376bdf157c341385|herdr-plugin-renamer|enabled
+nicosuave/memex|314fac01ffbf1c1ed738a8b298b786e9bd8ddec2|nicosuave.memex|enabled
+ntindle/herdr-resurrect|461e866cc772e156e39b94d085701972e24761af|ntindle.herdr-resurrect|enabled
+alvinunreal/oh-my-opencode-slim|6ea795aabbab88676d930a21538130a0e97c5ed6|oh-my-opencode-slim|enabled
+persiyanov/herdr-reviewr|b0a997d5e3f30ace4319f599f1a10f82031f355d|persiyanov.reviewr|enabled
+speardragon/herdr-plugin-manager|cc3370f9387ee994229693ae3dd783b859ab162b|ray.plugin-manager|enabled
+senna-lang/herdr-agent-usage|0eb3abc607ff7486891a4d1e028a0709b0d278f8|usagebar|enabled
+devashish2203/herdr-worktrunk|a3107ca566bafcd463bc138007a0c01051970784|worktrunk|enabled
